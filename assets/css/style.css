@@ -1,7 +1,7 @@
 :root {
-  --primary: #ccdad1;
+  --primary: #fcfdfc;
   --secondary: #9caea9;
-  --tertiary: #788585;
+  --tertiary: #3d3dc5;
   --light-dark: #6f6866;
   --dark: #38302e;
   --border-radius: .3rem;
@@ -96,6 +96,9 @@ p {
   padding: 3% 4%;
   background-color: var(--dark);
   color: var(--primary);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 720;
 }
 
 .hero p {
@@ -161,6 +164,13 @@ p {
 
 .card-body {
   padding: 2.5%;
+}
+
+.sub-card-header {
+  color: var(--primary);
+  background-color: var(--tertiary);
+  padding: 2.5%;
+  border-radius: calc(.18rem - 1px) calc(.18rem - 1px) 0 0;
 }
 
 /* FORM */
