@@ -21,14 +21,17 @@
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4">
         <h3 class="text-uppercase">Search For a City</h3>
-        <form id="user-form" class="flex-row justify-space-between">
+        <form id="city-form" class="flex-row justify-space-between">
             <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input col-12 col-md-11" />
-            <span class="oi oi-magnifying-glass col-12 col-md-1"></span>
+            <button class="col-12 col-md-1" id="city-form-search"><span class="oi oi-magnifying-glass"></span></button>
         </form>
 
         <div id="cities-list" class="card-body">
           <ul>
             <li>Austin</li>
+            <span class="oi oi-cloud"></span>
+            <span class="oi oi-sun"></span>
+            <span class="oi oi-rain"></span>
             <li>Chicago</li>
           </ul>
         </div>
@@ -122,7 +125,7 @@
     
   </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
   <script src="./assets/js/script.js"></script>
 </body>
 
