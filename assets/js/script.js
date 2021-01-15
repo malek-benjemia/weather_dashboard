@@ -51,59 +51,82 @@ var saveCity = function(city){
   /*cityArray.pop(city);*/
 };
 
+// call open weather map to get the UV
+var getCityUV =  async function(lat,long) {
+  var uvidx = null;
+  // format the github api url
+  var apiUrl ="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+long+"&appid=7b45126ef11a96be892cac454ac4ee41";
+
+  // make a request to the url
+  await fetch(apiUrl)
+    .then(async function(response) {
+      // request was successful
+      if (response.ok) {
+          await response.json().then(async function(data) {
+          uvidx= await data.current.uvi;
+        })
+      };
+    });
+  
+  return uvidx;
+  
+};
+
 // display the weather elements for today and the next 5 days
-var displayWeather = function(WeatherData) {
+var displayWeather = async function(WeatherData) {
   // check if api returned any data
-  if (WeatherData.length === 0) {
+  if (WeatherData.list.length === 0) {
     alert("No data found.");
     return;
   };
 
   // loop over data
-  for (var i = 0; i < WeatherData.length; i++) {
+  for (var i = 0; i < WeatherData.list.length; i++) {
     
     if (i==0){
-      var tempFar =Math.round( 10*((parseFloat(WeatherData[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
-      d0DateEl.textContent =  timeConverter(WeatherData[i].dt) ;
+      var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
+      d0DateEl.textContent =  timeConverter(WeatherData.list[i].dt) ;
       d0TempEl.textContent =  tempFar + " °F";
-      d0HumEl.textContent = WeatherData[i].main.humidity +"%";
-      d0WindEl.textContent = WeatherData[i].wind.speed +"MPH";
-      /*d0UVEl.textContent =WeatherData[i] ;*/
-    };
+      d0HumEl.textContent = WeatherData.list[i].main.humidity +"%";
+      d0WindEl.textContent = WeatherData.list[i].wind.speed +"MPH";
+      var lat =WeatherData.city.coord.lat;
+      var long =WeatherData.city.coord.lon;
+      d0UVEl.textContent = await getCityUV(lat,long)  ;
+    }; 
     if (i==5){
-      var tempFar =Math.round( 10*((parseFloat(WeatherData[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
-      d1DateEl.textContent = timeConverter(WeatherData[i].dt) ;
+      var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
+      d1DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
       /*d1IconEl.textContent =  ;*/
       d1TempEl.textContent =  tempFar + " °F";
-      d1HumEl.textContent = WeatherData[i].main.humidity +"%";
+      d1HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==13){
-      var tempFar =Math.round( 10*((parseFloat(WeatherData[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
-      d2DateEl.textContent = timeConverter(WeatherData[i].dt) ;
+      var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
+      d2DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
       /*d2IconEl.textContent =  ;*/
       d2TempEl.textContent =  tempFar + " °F";
-      d2HumEl.textContent = WeatherData[i].main.humidity +"%";
+      d2HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==21){
-      var tempFar =Math.round( 10*((parseFloat(WeatherData[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
-      d3DateEl.textContent = timeConverter(WeatherData[i].dt) ;
+      var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
+      d3DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
       /*d3IconEl.textContent =  ;*/
       d3TempEl.textContent =  tempFar + " °F";
-      d3HumEl.textContent = WeatherData[i].main.humidity +"%";
+      d3HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==29){
-      var tempFar =Math.round( 10*((parseFloat(WeatherData[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
-      d4DateEl.textContent = timeConverter(WeatherData[i].dt) ;
+      var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
+      d4DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
       /*d4IconEl.textContent =  ;*/
       d4TempEl.textContent =  tempFar + " °F";
-      d4HumEl.textContent = WeatherData[i].main.humidity +"%";
+      d4HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==37){
-      var tempFar =Math.round( 10*((parseFloat(WeatherData[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
-      d5DateEl.textContent = timeConverter(WeatherData[i].dt) ;
+      var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
+      d5DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
       /*d5IconEl.textContent =  ;*/
       d5TempEl.textContent =  tempFar + " °F";
-      d5HumEl.textContent = WeatherData[i].main.humidity +"%";
+      d5HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
 
 
@@ -131,7 +154,7 @@ var getCityWeather = function(event) {
       if (response.ok) {
         response.json().then(function(data) {
           saveCity(city);
-          displayWeather(data.list);
+          displayWeather(data);
         });
       } else {
         alert("Error: " + response.statusText);
