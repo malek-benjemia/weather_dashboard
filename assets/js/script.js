@@ -93,7 +93,14 @@ var displayWeather = async function(WeatherData) {
       d0WindEl.textContent = WeatherData.list[i].wind.speed +" MPH";
       var lat =WeatherData.city.coord.lat;
       var long =WeatherData.city.coord.lon;
-      d0UVEl.textContent = await getCityUV(lat,long)  ;
+      var uvindex = await getCityUV(lat,long)  ;
+      d0UVEl.textContent = uvindex  ;
+
+      if (uvindex <=2){d0UVEl.classList = "low"};
+      if (uvindex >=3 && uvindex <=5){d0UVEl.classList = "moderate"};
+      if (uvindex >=6 && uvindex <=7){d0UVEl.classList = "high"};
+      if (uvindex >=8 ){d0UVEl.classList = "very-high"};
+
     }; 
     if (i==5){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;

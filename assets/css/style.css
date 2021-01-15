@@ -151,13 +151,22 @@ img.resize {
   border-radius: var(--border-radius);
 }
 
-.icon-danger {
-  color: rgb(255, 70, 70);
+.low {
+  background-color: rgb(26, 211, 20);
 }
 
-.icon-success {
-  color: rgb(29, 153, 255);
+.moderate {
+  background-color: rgb(241, 227, 28);
 }
+
+.high {
+  background-color: rgb(233, 158, 19);
+}
+
+.very-high {
+  background-color: rgb(255, 70, 70);
+}
+
 
 /* CARDS */
 .card {
