@@ -3,6 +3,7 @@ var cityFormSearchEl = document.querySelector("#city-form-search");
 var cityNameEl = document.querySelector("#city-detail");
 
 var d0DateEl= document.querySelector("#date0") ; 
+var d0IconEl= document.querySelector("#meteo0") ;
 var d0TempEl = document.querySelector("#temprature");
 var d0HumEl = document.querySelector("#humidity");
 var d0WindEl = document.querySelector("#wind");
@@ -86,9 +87,10 @@ var displayWeather = async function(WeatherData) {
     if (i==0){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
       d0DateEl.textContent =  timeConverter(WeatherData.list[i].dt) ;
+      d0IconEl.innerHTML = "<img class='resize' src=http://openweathermap.org/img/wn/"+WeatherData.list[i].weather[0].icon+"@2x.png>" ;
       d0TempEl.textContent =  tempFar + " °F";
       d0HumEl.textContent = WeatherData.list[i].main.humidity +"%";
-      d0WindEl.textContent = WeatherData.list[i].wind.speed +"MPH";
+      d0WindEl.textContent = WeatherData.list[i].wind.speed +" MPH";
       var lat =WeatherData.city.coord.lat;
       var long =WeatherData.city.coord.lon;
       d0UVEl.textContent = await getCityUV(lat,long)  ;
@@ -96,35 +98,35 @@ var displayWeather = async function(WeatherData) {
     if (i==5){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
       d1DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
-      /*d1IconEl.textContent =  ;*/
+      d1IconEl.innerHTML = "<img class='resize' src=http://openweathermap.org/img/wn/"+WeatherData.list[i].weather[0].icon+"@2x.png>" ;
       d1TempEl.textContent =  tempFar + " °F";
       d1HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==13){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
       d2DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
-      /*d2IconEl.textContent =  ;*/
+      d2IconEl.innerHTML = "<img class='resize' src=http://openweathermap.org/img/wn/"+WeatherData.list[i].weather[0].icon+"@2x.png>" ;
       d2TempEl.textContent =  tempFar + " °F";
       d2HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==21){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
       d3DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
-      /*d3IconEl.textContent =  ;*/
+      d3IconEl.innerHTML = "<img class='resize' src=http://openweathermap.org/img/wn/"+WeatherData.list[i].weather[0].icon+"@2x.png>" ;
       d3TempEl.textContent =  tempFar + " °F";
       d3HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==29){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
       d4DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
-      /*d4IconEl.textContent =  ;*/
+      d4IconEl.innerHTML = "<img class='resize' src=http://openweathermap.org/img/wn/"+WeatherData.list[i].weather[0].icon+"@2x.png>" ;
       d4TempEl.textContent =  tempFar + " °F";
       d4HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
     if (i==37){
       var tempFar =Math.round( 10*((parseFloat(WeatherData.list[i].main.temp) - 273.15) * (9/5) + 32) )/10 ;
       d5DateEl.textContent = timeConverter(WeatherData.list[i].dt) ;
-      /*d5IconEl.textContent =  ;*/
+      d5IconEl.innerHTML = "<img class='resize' src=http://openweathermap.org/img/wn/"+WeatherData.list[i].weather[0].icon+"@2x.png>" ;
       d5TempEl.textContent =  tempFar + " °F";
       d5HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };

@@ -1,7 +1,7 @@
 :root {
   --primary: #fcfdfc;
   --secondary: #9caea9;
-  --tertiary: #3d3dc5;
+  --tertiary: #4aafe9;
   --light-dark: #6f6866;
   --dark: #38302e;
   --border-radius: .3rem;
@@ -46,6 +46,11 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+img.resize {
+  max-width:50%;
+  max-height:50%;
 }
 
  .btn {
@@ -170,6 +175,8 @@ ul {
 
 .card-body {
   padding: 2.5%;
+  background-color: var(--tertiary);
+  color: var(--primary);
 }
 
 .sub-card-header {
