@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Weather Dashboard</title>
 </head>
@@ -27,12 +28,7 @@
         </form>
 
         <div id="cities-list">
-          <ul>
-            <li>Austin</li>
-            <span class="oi oi-cloud"></span>
-            <span class="oi oi-sun"></span>
-            <span class="oi oi-rain"></span>
-            <li>Chicago</li>
+          <ul id="cities-list-ul">
           </ul>
         </div>
     </div>
@@ -121,7 +117,8 @@
     
   </main>
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 

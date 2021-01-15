@@ -1,4 +1,9 @@
+var citiesList = [];
+
 var cityFormSearchEl = document.querySelector("#city-form-search");
+
+var oldSearchDivEl =document.querySelector("#cities-list");
+var oldSearchEl = document.querySelector("#cities-list-ul");
 
 var cityNameEl = document.querySelector("#city-detail");
 
@@ -46,10 +51,43 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
+// Display old search
+var loadCities = function() {
+  oldSearchEl = document.querySelector("#cities-list-ul");
+  if (oldSearchEl){
+  oldSearchEl.remove();
+  var oldSearchEl = document.createElement("ul");
+  oldSearchEl.id = "cities-list-ul";
+  oldSearchDivEl =document.querySelector("#cities-list");
+  oldSearchDivEl.append(oldSearchEl);};
+
+  citiesList = JSON.parse(localStorage.getItem("citiesList"));
+  if (citiesList){
+    for (var i = 0; i < citiesList.length; i++)  { 
+      var cityEl = document.createElement("li");
+      cityEl.textContent = citiesList[i].text;
+      oldSearchEl.append(cityEl);
+    };
+  };
+};
+
 // save the city to history and local storage
 var saveCity = function(city){
   cityNameEl.textContent =city;
-  /*cityArray.pop(city);*/
+
+  citiesList = JSON.parse(localStorage.getItem("citiesList"));
+  
+  if (citiesList){
+    var cityObject ={text:city};
+    
+    if (!citiesList.some(cityob => cityob.text === city))
+      {citiesList.push(cityObject);};
+  }
+  else {citiesList=[{text:city}]};
+
+  localStorage.setItem("citiesList", JSON.stringify(citiesList));
+
+  loadCities();
 };
 
 // call open weather map to get the UV
@@ -138,7 +176,6 @@ var displayWeather = async function(WeatherData) {
       d5HumEl.textContent = WeatherData.list[i].main.humidity +"%";
     };
 
-
   };
 };
 
@@ -174,6 +211,9 @@ var getCityWeather = function(event) {
       alert("Unable to connect" + error);
     });
 };
+
+// call the function to fill the search history for the cities
+loadCities();
 
 // click the search button
 cityFormSearchEl.addEventListener("click", getCityWeather);
