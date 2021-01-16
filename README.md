@@ -16,7 +16,7 @@ Display cities weather
 https://malek-benjemia.github.io/weather_dashboard/
 
 ## Site Image
-<img src=".\assets\images\site.png">
+<img src=".\assets\images\site.PNG">
 
 ## Contribution
 Made with ❤️ by Malek Ben Jemia.
