@@ -3,7 +3,6 @@ var citiesList = [];
 var cityFormSearchEl = document.querySelector("#city-form-search");
 
 var oldSearchDivEl =document.querySelector("#cities-list");
-var oldSearchEl = document.querySelector("#cities-list-ul");
 
 var cityNameEl = document.querySelector("#city-detail");
 
@@ -65,6 +64,7 @@ var loadCities = function() {
   if (citiesList){
     for (var i = 0; i < citiesList.length; i++)  { 
       var cityEl = document.createElement("li");
+      cityEl.id="old-city";
       cityEl.textContent = citiesList[i].text;
       oldSearchEl.append(cityEl);
     };
@@ -181,8 +181,12 @@ var displayWeather = async function(WeatherData) {
 
 // call open weather map to get the weather details
 var getCityWeather = function(event) {
-  event.preventDefault()
-  var city = document.querySelector("#city-name").value;
+  //get the city from the search form
+  if ($(this)[0].id=="city-form-search"){
+  event.preventDefault();
+  var city = document.querySelector("#city-name").value;}
+  else {var city = event.target.textContent};
+  
 
   // check if there is a string in the city name field
   if (city.length === 0) {
@@ -215,6 +219,16 @@ var getCityWeather = function(event) {
 // call the function to fill the search history for the cities
 loadCities();
 
+
 // click the search button
 cityFormSearchEl.addEventListener("click", getCityWeather);
 
+
+
+// click the ul->li
+oldSearchDivEl.addEventListener("click", getCityWeather);
+
+/*
+$("#cities-list").on("click","li" , function() {
+  getCityWeather();
+});*/
