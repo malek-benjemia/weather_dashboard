@@ -196,7 +196,7 @@ var getCityWeather = function(event) {
   };
 
   // format the github api url
-  var apiUrl ="http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid=7b45126ef11a96be892cac454ac4ee41";
+  var apiUrl ="https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid=7b45126ef11a96be892cac454ac4ee41";
 
   // make a request to the url
   fetch(apiUrl)
