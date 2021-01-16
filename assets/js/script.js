@@ -184,7 +184,8 @@ var getCityWeather = function(event) {
   //get the city from the search form
   if ($(this)[0].id=="city-form-search"){
   event.preventDefault();
-  var city = document.querySelector("#city-name").value;}
+  var city = document.querySelector("#city-name").value;
+  document.querySelector("#city-name").value="";}
   else {var city = event.target.textContent};
   
 
